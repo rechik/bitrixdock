@@ -1,6 +1,16 @@
 version: '2'
 
 services:
+    phpmyadmin:
+        build: ./phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - '${INTERFACE}:8088:80'
+        links:
+            - mysql:db
+        networks:
+            - bitrix
+        restart: always
     php:
         build: ./${PHP_VERSION}
         container_name: php
